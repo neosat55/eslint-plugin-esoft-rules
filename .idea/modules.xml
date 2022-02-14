@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/esoft_rules.iml" filepath="$PROJECT_DIR$/.idea/esoft_rules.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../lint_test/.idea/lint_test.iml" filepath="$PROJECT_DIR$/../lint_test/.idea/lint_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lint_h/.idea/lint_h.iml" filepath="$PROJECT_DIR$/../lint_h/.idea/lint_h.iml" />
     </modules>
   </component>
 </project>
