@@ -57,7 +57,6 @@ ruleTester.run('no-long-conditional-expression', rule, {
         )
       ) {}`,
       options: [40]
-      // only: true
     },
     {
       code: `if (
@@ -84,25 +83,16 @@ ruleTester.run('no-long-conditional-expression', rule, {
           ) === memberType
         ) {}`,
       options: [100]
-      // only: true
     },
     {
-      only: true,
       code: `
-        const hellp = 1;
-      
-        if (
-          regionalTicket &&
-          (
-            regionalTicket.childTicket ||
-            regionalTicket.parentTicket
-          )
+        if (regionalTicket && 
+          (regionalTicket.childTicket || regionalTicket.parentTicket)
         ){}`,
       options: [100],
       parserOptions: {
         ecmaVersion: 6
-      },
-      // only: true
+      }
     },
     {
       code: `if (
@@ -132,8 +122,7 @@ ruleTester.run('no-long-conditional-expression', rule, {
         currentStatuses.includes(ticketStatusEnum.CANCELLED) &&
         this.ticketType === ticketTypeEnum.RENT_OUT
       ) {}`,
-      options: [100],
-      // only: true
+      options: [100]
     },
     {
       code: `if (
@@ -144,8 +133,7 @@ ruleTester.run('no-long-conditional-expression', rule, {
           ticketStatusEnum.CANCELLED_RENTOUT
         ].includes(this.ticketStatusId)
       ) {}`,
-      options: [100],
-      // only: true
+      options: [100]
     },
     {
       code: `if (
@@ -158,32 +146,48 @@ ruleTester.run('no-long-conditional-expression', rule, {
         variableLognName120 || 
         Object.values(keys)
       ) {}`,
-      options: [20],
-      // only: true
+      options: [20]
+    },
+    {
+      code: `if (favorite && [
+        ticketStatusEnum.SUCCESS,
+        ticketStatusEnum.CANCELLED,
+        ticketStatusEnum.CANCELLED_RENTOUT
+      ].includes(this.ticketStatusId)) 
+      {}`,
+      options: [100]
     }
   ],
   invalid: [
     {
       code: `if (variable1 && variable2 || variable3 > variable4) {}`,
-      errors: genErrors(2),
-      // only: true,
+      errors: genErrors(1),
       options: [10]
     },
     {
       code: `if (variable1 && variable2 || (variable3 > variable4)) {}`,
-      errors: genErrors(2),
+      errors: genErrors(1),
       options: [10]
     },
     {
       code: `if ((variable1 && variable2()) || variable3 > variable4) {}`,
-      errors: genErrors(2),
+      errors: genErrors(1),
       options: [10]
     },
     {
       code: `if ((variable1 && variable2()) || variable3 > variable4 && variable10 || variableLognName120 || Object.values(keys)) {}`,
-      errors: genErrors(5),
-      options: [20],
-      // only: true
+      errors: genErrors(4),
+      options: [20]
+    },
+    {
+      code: `if (
+        (
+          variable1 && variable2()
+        ) || 
+        variable3 > variable4 && 
+        variable10 || variableLognName120 || Object.values(keys)) {}`,
+      errors: genErrors(2),
+      options: [20]
     },
     {
       code: `if ((variable10204300 && heyVarHelloDream) && variable3) {}`,
@@ -231,14 +235,9 @@ ruleTester.run('no-long-conditional-expression', rule, {
       options: [100]
     },
     {
-      code: `if (favorite && [
-        ticketStatusEnum.SUCCESS,
-        ticketStatusEnum.CANCELLED,
-        ticketStatusEnum.CANCELLED_RENTOUT
-      ].includes(this.ticketStatusId)) 
-      {}`,
-      errors: genErrors(1),
-      options: [100]
+      code: `if (variable1 && (variable2 || variable3 && (variable5 || variable10))) {}`,
+      errors: genErrors(4),
+      options: [20]
     }
   ]
 });

@@ -20,46 +20,22 @@ const traverseLogicalHelperLeft = (node) => {
   return [node, ...leftNodes, ...rightNodes];
 };
 
-/**
- * @param {import('eslint').Rule.Node} node
- */
-const traverseLogicalHelperRight = (node) => {
-  if (!isLogical(node)) {
-    return [];
-  }
+const makeIsNodeWrapped = (sourceCode) => (node, initialRange) => {
+  const tBefore = sourceCode.getTokenBefore(node);
+  const tAfter = sourceCode.getTokenAfter(node);
+  const bStart = tBefore.loc.start.line;
+  const aEnd = tAfter.loc.end.line;
 
-  const rightNodes = traverseLogicalHelperRight(node.right);
-  const leftNodes = traverseLogicalHelperRight(node.left);
-
-  return [...leftNodes, ...rightNodes, node];
-};
-
-const traversePostOrderLogicalHelper = (node) => {
-  const s1 = [];
-  const s2 = [];
-
-  s1.push(node);
-
-  while (s1.length) {
-    const node = s1.pop();
-
-    s2.push(node);
-
-    if (isLogical(node.right)) {
-      s1.push(node.right);
-    }
-
-    if (isLogical(node.left)) {
-      s1.push(node.left);
-    }
-  }
-
-  return s2;
+  return (
+      bStart !== initialRange.start.line &&
+      aEnd !== initialRange.end.line
+    ) &&
+    tBefore.value === '(' &&
+    tAfter.value === ')';
 };
 
 module.exports = {
   isLogical,
-  traverseLogicalHelperLeft,
-  traverseLogicalHelperRight,
-  traversePostOrderLogicalHelper
+  makeIsNodeWrapped,
+  traverseLogicalHelperLeft
 };
