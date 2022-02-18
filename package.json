@@ -1,5 +1,5 @@
 {
-  "name": "eslint-plugin-esoft-rules",
+  "name": "@ecosystem/eslint-plugin-esoft-rules",
   "version": "0.0.1",
   "description": "Rules for esoft",
   "keywords": [

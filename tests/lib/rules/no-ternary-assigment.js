@@ -7,10 +7,9 @@ const ruleTester = new RuleTester();
 
 ruleTester.run('no-ternary-assigment', rule, {
   valid: [
-    'c = 0',
     'a === 1 ? b : c',
     'true ? c() : null',
-    'if (a) { c = 3 }'
+    'var c = a ? 1 : 2'
   ],
   invalid: [
     {
@@ -20,6 +19,14 @@ ruleTester.run('no-ternary-assigment', rule, {
     {
       code: 'true ? c() : c = 0',
       errors: [{messageId: 'avoidAssigment'}]
+    },
+    {
+      code: 'true ? c ? a = b : g : h',
+      errors: [{messageId: 'avoidAssigment'}]
+    },
+    {
+      code: 'addressData === false ? addressData = {} : logger = false;',
+      errors: [{messageId: 'avoidAssigment'}, {messageId: 'avoidAssigment'}]
     }
   ]
 });

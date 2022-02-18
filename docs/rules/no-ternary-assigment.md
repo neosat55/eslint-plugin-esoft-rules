@@ -9,15 +9,16 @@ disable assigment in ternary expression
 ❌ Examples of **incorrect** code:
 ```js
 a === 1 ? b = 1 : null;
-true ? c() : c = 0
+true ? c() : c = 0;
+true ? c ? a = b : g : h;
+addressData === false ? addressData = {} : logger = false;
 ```
 
 ✔️ Examples of **correct** code:
 ```js
-c = 0;
 a === 1 ? b : c;
 true ? c() : null;
-if (a) { c = 3 }
+var c = a ? 1 : 2
 ```
 
 ## Resources
