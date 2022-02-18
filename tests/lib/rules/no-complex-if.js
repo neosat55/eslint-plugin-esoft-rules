@@ -1,11 +1,7 @@
-/**
- * @fileoverview No complex if
- * @author Fizuli Makhmudov
- */
 'use strict';
 
 const rule = require('../../../lib/rules/no-complex-if');
-const RuleTester = require('eslint').RuleTester;
+const RuleTester = require('eslint-docgen').RuleTester;
 
 /**
  * @type {import('eslint').RuleTester}

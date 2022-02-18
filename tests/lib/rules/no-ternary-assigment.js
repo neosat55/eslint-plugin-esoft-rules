@@ -1,11 +1,7 @@
-/**
- * @fileoverview No ternary assigment
- * @author Fizuli Makhmudov
- */
 'use strict';
 
 const rule = require('../../../lib/rules/no-ternary-assigment');
-const RuleTester = require('eslint').RuleTester;
+const RuleTester = require('eslint-docgen').RuleTester;
 
 const ruleTester = new RuleTester();
 

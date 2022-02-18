@@ -1,11 +1,7 @@
-/**
- * @fileoverview No long conditional expression
- * @author Fizuli Makhmudov
- */
 'use strict';
 
 const rule = require('../../../lib/rules/no-long-conditional-expression');
-const RuleTester = require('eslint').RuleTester;
+const RuleTester = require('eslint-docgen').RuleTester;
 
 /**
  * @type {import('eslint').RuleTester}

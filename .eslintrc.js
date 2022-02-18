@@ -22,6 +22,8 @@ module.exports = {
     }
   ],
   rules: {
-    'no-console': 'error'
+    'no-console': 'error',
+    // Отключаем из-за eslint-docgen
+    'node/no-unpublished-require': 'off'
   }
 };
