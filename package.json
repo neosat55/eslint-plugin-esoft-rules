@@ -13,7 +13,9 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "test": "mocha tests --recursive",
-    "test:cli": "mocha"
+    "test:cli": "mocha",
+    "generate-doc": "DOCGEN=1 npm run test",
+    "generate-table": "node build/generate-readme-table.js"
   },
   "dependencies": {
     "requireindex": "^1.2.0"

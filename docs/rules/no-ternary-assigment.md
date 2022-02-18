@@ -2,7 +2,7 @@
 
 # no-ternary-assigment
 
-No assigment in ternary expression
+disable assigment in ternary expression
 
 ## Rule details
 
